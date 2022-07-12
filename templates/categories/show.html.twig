@@ -1,0 +1,18 @@
+{% extends 'blog/base.html.twig' %}
+
+{% block title %}
+	{{categorie.nom}}!
+{% endblock %}
+
+{% block body %}
+	<div class="container mb-4">
+		<div class="row g-5">
+			<div class="col">
+				<h3 class="pb-4 mb-4 fst-italic border-bottom">{{categorie.nom}}</h3>
+				<div id="publication-list">
+					{% include "publications/list.html.twig" with {publications: categorie.publications , leftCol:4, rightCol:8} %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

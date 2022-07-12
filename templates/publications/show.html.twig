@@ -1,0 +1,14 @@
+{% extends 'blog/base.html.twig' %}
+
+{% block title %}
+	{{publication.titre}}
+	!
+{% endblock %}
+
+{% block body %}
+	<div class="container mb-4">
+		<h3>{{publication.titre}}</h3>
+		<hr>
+		{{publication.contenu|raw}}
+	</div>
+{% endblock %}

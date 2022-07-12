@@ -1,0 +1,22 @@
+{% set publication_show = path('app_publications_show',{'slug':publication.slug}) %}
+<article class="mb-3">
+	<div class="row">
+		<div class="col-md-{{leftCol ?? 5}}">
+			{% if publication.featuredImage %}
+				<a href="{{publication_show}}">
+					<img src="/uploads/images/{{publication.featuredImage.fileName}}" alt="{{publication.featuredImage.altText}}" loading="lazy" width="350" height="205">
+				</a>
+			{% endif %}
+
+		</div>
+		<div class="col-md-{{leftCol ?? 7}}">
+			<h3>
+				<a class="text-decoration-none" href="{{publication_show}}">{{publication.titre}}</a>
+			</h3>
+			<p>
+				{{ publication.createdAt ? publication.createdAt|date('Y-m-d H:i:s') : '' }}
+			</p>
+			{{publication.featuredText ?: publication.contenu|striptags|slice(0, 130) ~'...'|raw}}
+		</div>
+	</div>
+</article>
