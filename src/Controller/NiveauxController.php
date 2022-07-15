@@ -15,8 +15,9 @@ class NiveauxController extends AbstractController
     public function index(?Niveaux $niveaux, PublicationsRepository $publicationsRepos, CategoriesRepository $categoriesRepos): Response
     {
         return $this->render('niveaux/show.html.twig', [
-            'niveau' => $niveaux,
+            'niveaux' => $niveaux,
             'categories' => $categoriesRepos->findAll(),
+            'publications' => $publicationsRepos,
         ]);
     }
     /* #[Route('/publications/{slug}', name: 'app_publications_show')]

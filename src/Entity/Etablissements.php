@@ -66,9 +66,13 @@ class Etablissements
     #[ORM\OneToMany(mappedBy: 'etablissement', targetEntity: Enseignements::class)]
     private $enseignements;
 
+    #[ORM\OneToMany(mappedBy: 'etablissement', targetEntity: Users::class, orphanRemoval: true)]
+    private $users;
+
     public function __construct()
     {
         $this->enseignements = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function __toString()
@@ -285,6 +289,36 @@ class Etablissements
             // set the owning side to null (unless already changed)
             if ($enseignement->getEtablissement() === $this) {
                 $enseignement->setEtablissement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Users>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(Users $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setEtablissement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(Users $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getEtablissement() === $this) {
+                $user->setEtablissement(null);
             }
         }
 

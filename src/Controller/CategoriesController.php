@@ -18,6 +18,7 @@ class CategoriesController extends AbstractController
         }
         return $this->render('categories/show.html.twig', [
             'categorie' => $categories,
+            'niveaux' => $niveauxRepos->findAll(),
         ]);
     }
 }

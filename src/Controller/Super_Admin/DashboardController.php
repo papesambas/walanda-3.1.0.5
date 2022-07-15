@@ -54,7 +54,8 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToDashboard('Tableau de Bord', 'fa fa-home');
+        yield MenuItem::linkToRoute('Mon Blog', 'fa fa-blog', routeName: 'app_blog');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         yield MenuItem::subMenu('Etablissements', 'fas fa-university')->setSubItems([
             MenuItem::linkToCrud('Tous les établissements', 'fas fa-list', Etablissements::class),
@@ -76,6 +77,8 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Tous les commentaires', 'fas fa-list', Comments::class),
             MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Comments::class)->setAction(Crud::PAGE_NEW),
         ]);
+        yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Comments::class);
+
         yield MenuItem::subMenu('Pages', 'fas fa-university')->setSubItems([
             MenuItem::linkToCrud('Toutes les pages', 'fas fa-list', Pages::class),
             MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Pages::class)->setAction(Crud::PAGE_NEW),
@@ -88,6 +91,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Toutes les options', 'fas fa-list', Options::class),
             MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Options::class)->setAction(Crud::PAGE_NEW),
         ]);
+
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

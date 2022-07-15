@@ -39,6 +39,20 @@ class PublicationsRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Publications[] Returns an array of Publications objects
+     */
+    public function findBySlug($slug): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Publications[] Returns an array of Publications objects
 //     */

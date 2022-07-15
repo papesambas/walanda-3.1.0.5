@@ -1,20 +1,32 @@
 {% extends 'blog/base.html.twig' %}
 
 {% block title %}
-	{{niveau.designation}}!
+	{{niveaux.designation}}!
 {% endblock %}
 
 {% block body %}
 	<div class="container mb-4">
 		<div class="row g-5">
-			<div class="col">
+			<div class="col-md-9">
 				<h3 class="pb-4 mb-4 fst-italic border-bottom">Niveau :
-					{{niveau.designation}}</h3>
+					{{niveaux.designation}}</h3>
 				<div id="publication-list">
-					{% include "widget/categories.html.twig" with {categories:niveau.categories} %}
+					<div class="row">
+						<div
+							class="col">{# {% include "publications/list.html.twig" with {publications: categories.niveau , leftCol:4, rightCol:8} %} #}
+						</div>
+					</div>
 					{# {% include "publications/list.html.twig" with {publications: categories.publication , leftCol:4, rightCol:8} %} #}
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="position-sticky" style="top: 2rem ;">
+					{% include "widget/about.html.twig" %}
+					{% include "widget/categories.html.twig" with {categories:niveaux.categories} %}
+					{# {% include "widget/niveaux.html.twig" %} #}
 				</div>
 			</div>
 		</div>
 	</div>
+
 {% endblock %}
